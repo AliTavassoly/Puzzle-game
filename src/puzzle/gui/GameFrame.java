@@ -3,7 +3,7 @@ package puzzle.gui;
 import javax.swing.*;
 
 public class GameFrame extends JFrame {
-    private JPanel panel;
+    private final JPanel panel;
     private static GameFrame frameInstance;
 
     private GameFrame(){

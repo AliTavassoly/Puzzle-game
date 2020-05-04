@@ -30,14 +30,7 @@ public class Puzzle {
 
     private void makeInitPuzzle() {
         ArrayList<PuzzlePiece> puzzlePieces = new ArrayList<>();
-
         ArrayList<Integer> piecesRandomOrder = new ArrayList<>(Arrays.asList(0, 1, 2, 3, 4, 5, 6, 8, 7));
-        PuzzleBoard.getInstance().setMissingPiece(7);
-
-        if (!solvable(PuzzleBoard.getInstance().getMissingPiece(), piecesRandomOrder)) {
-            JOptionPane.showMessageDialog(gameFrame, "this puzzle is not solvable, change your config and try again", "Puzzle not solvable", JOptionPane.WARNING_MESSAGE);
-            gameFinished = true;
-        }
 
         for (int i = 0; i < 9; i++) {
             puzzlePieces.add(new PuzzlePiece(new Location(
@@ -45,7 +38,12 @@ public class Puzzle {
                     gamePanel.getWidth() / 3 * (i / 3)),
                     piecesRandomOrder.get(i)));
         }
-        PuzzleBoard.getInstance().setPuzzlePieces(puzzlePieces);
+        PuzzleBoard.makeInstance(puzzlePieces);
+
+        if (!solvable(PuzzleBoard.getInstance().getMissingPiece(), piecesRandomOrder)) {
+            JOptionPane.showMessageDialog(gameFrame, "this puzzle is not solvable, change your config and try again", "Puzzle not solvable", JOptionPane.WARNING_MESSAGE);
+            gameFinished = true;
+        }
     }
 
     private void runGame() {

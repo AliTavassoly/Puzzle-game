@@ -9,22 +9,29 @@ public class PuzzleBoard {
     private boolean isFinished;
     private ArrayList<PuzzlePiece> puzzlePieces = new ArrayList<>();
 
-    private PuzzleBoard(){
-
+    private PuzzleBoard(ArrayList<PuzzlePiece> puzzlePieces) {
+        this.puzzlePieces = puzzlePieces;
+        for(int i = 0; i < puzzlePieces.size(); i++){
+            if(puzzlePieces.get(i).getPieceNumber() == 8){
+                missingPiece = i;
+                break;
+            }
+        }
     }
 
-    public static PuzzleBoard getInstance(){
-        if(puzzleBoardInstance == null){
-            return puzzleBoardInstance = new PuzzleBoard();
-        } else {
-            return puzzleBoardInstance;
-        }
+    public static PuzzleBoard getInstance() {
+        return puzzleBoardInstance;
+    }
+
+    public static void makeInstance(ArrayList<PuzzlePiece> puzzlePieces) {
+        puzzleBoardInstance = new PuzzleBoard(puzzlePieces);
     }
 
     // Start of getter setter
     public void setPuzzlePieces(ArrayList<PuzzlePiece> puzzlePieces) {
         this.puzzlePieces = puzzlePieces;
     }
+
     public ArrayList<PuzzlePiece> getPuzzlePieces() {
         return puzzlePieces;
     }
@@ -32,6 +39,7 @@ public class PuzzleBoard {
     public void setMissingPiece(int missingPiece) {
         this.missingPiece = missingPiece;
     }
+
     public int getMissingPiece() {
         return missingPiece;
     }
@@ -39,6 +47,7 @@ public class PuzzleBoard {
     public boolean isFinished() {
         return isFinished;
     }
+
     public void setFinished(boolean finished) {
         isFinished = finished;
     }

@@ -12,7 +12,6 @@ public class MyKeyListener implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent keyEvent) {
-
         int missingPieceIndex = PuzzleBoard.getInstance().getMissingPiece();
         if (keyEvent.getKeyCode() == KeyEvent.VK_RIGHT) {
 
