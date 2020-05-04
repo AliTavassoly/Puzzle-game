@@ -3,11 +3,9 @@ package puzzle.gui;
 import javax.swing.*;
 
 public class GameFrame extends JFrame {
-    private final JPanel panel;
     private static GameFrame frameInstance;
 
     private GameFrame(){
-        panel = GamePanel.getInstance();
         configFrame();
     }
 
@@ -20,9 +18,9 @@ public class GameFrame extends JFrame {
     }
 
     private void configFrame(){
-        setSize(panel.getSize());
-        setLocation(panel.getLocation());
-        add(panel);
+        setSize(GamePanel.getInstance().getSize());
+        setLocation(GamePanel.getInstance().getLocation());
+        add(GamePanel.getInstance());
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         setUndecorated(true);
