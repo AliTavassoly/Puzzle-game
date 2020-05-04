@@ -44,13 +44,9 @@ public class PuzzleBoard {
     }
 
     public void swapPieces(int i, int j) {
-        PuzzlePiece copy = this.puzzlePieces.get(i).getClone();
+        PuzzlePiece copy = puzzlePieces.get(i).getClone();
         puzzlePieces.get(i).setPieceNumber(puzzlePieces.get(j).getPieceNumber());
         puzzlePieces.get(j).setPieceNumber(copy.getPieceNumber());
-        //puzzlePieces.set(i, puzzlePieces.get(j));
-        //puzzlePieces.set(j, copy);
-
-
 
         if (gameFinished()) {
             gameState = "finished";
@@ -58,13 +54,8 @@ public class PuzzleBoard {
     }
 
     private boolean gameFinished() {
-        for (int i = 0; i < 9; i++) {
-            int pieceIdentifier = puzzlePieces.get(i).getPieceNumber();
-            if (pieceIdentifier == 8) {
-                continue;
-            }
-
-            if (pieceIdentifier != i) {
+        for (int i = 0; i < 8; i++) {
+            if (puzzlePieces.get(i).getPieceNumber() != i) {
                 return false;
             }
         }
