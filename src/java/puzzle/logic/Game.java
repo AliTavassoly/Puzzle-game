@@ -2,8 +2,6 @@ package puzzle.logic;
 
 import puzzle.util.Mapper;
 
-import javax.swing.*;
-
 public class Game {
     public static int n = 4;
     public static int squareLength = 100;
@@ -20,7 +18,7 @@ public class Game {
         int reply = Mapper.getInstance().endGameDialog(
                 "this puzzle is not solvable, do you want to play new one?",
                 "Puzzle not solvable");
-        if(reply == JOptionPane.YES_OPTION){
+        if(reply == 0){
             Game game = new Game();
         } else {
             System.exit(0);
@@ -31,7 +29,7 @@ public class Game {
         int reply = Mapper.getInstance().notSolveAbleDialog(
                 "You finished the game, congratulation. do you want to play new game?",
                 "game finished");
-        if(reply == JOptionPane.YES_OPTION){
+        if(reply == 0){
             Game game = new Game();
         } else {
             System.exit(0);
