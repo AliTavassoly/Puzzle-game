@@ -3,7 +3,7 @@ package puzzle.logic;
 import puzzle.util.Mapper;
 
 public class Game {
-    public static int n = 4;
+    public static int n = 3;
     public static int squareLength = 100;
 
     public Game() {
