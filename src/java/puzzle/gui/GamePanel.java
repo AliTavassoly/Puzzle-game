@@ -43,7 +43,7 @@ public class GamePanel extends JPanel {
                 }
                 else {
                     image = ImageIO.read(this.getClass().getResourceAsStream(
-                            "/images/missing.jpg"));
+                            "/images/missing.png"));
                 }
             } catch (IOException e) {
                 e.printStackTrace();
