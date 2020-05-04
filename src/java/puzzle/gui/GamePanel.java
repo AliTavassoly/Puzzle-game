@@ -1,12 +1,13 @@
 package puzzle.gui;
 
-import puzzle.Mapper;
+import puzzle.util.Mapper;
 import puzzle.Game;
 import puzzle.logic.PuzzlePiece;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
@@ -37,19 +38,25 @@ public class GamePanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+
+        Graphics2D g2 = (Graphics2D) g;
         for (PuzzlePiece piece : Mapper.getInstance().getPuzzlePieces()) {
-            Image image = null;
+            BufferedImage image = null;
             try {
                 if (piece.getPieceNumber() != 8) {
-                    image = ImageIO.read(new File("src/assets/" + (piece.getPieceNumber() + 1) + ".jpg"));
+                    image = ImageIO.read(this.getClass().getResourceAsStream(
+                      "/images/" + (piece.getPieceNumber() + 1) + ".jpg"));
                 }
                 else {
-                    image = ImageIO.read(new File("src/assets/missing.jpg"));
+                    image = ImageIO.read(this.getClass().getResourceAsStream(
+                            "/images/missing.jpg"));
                 }
             } catch (IOException e) {
                 e.printStackTrace();
+            } catch (Exception e){
+                e.printStackTrace();
             }
-            g.drawImage(image, getHeight() / 3 * piece.getLocation().getX(), getWidth() / 3 * piece.getLocation().getY(), (int) this.getSize().getWidth() / 3, (int) this.getSize().getHeight() / 3, null);
+            g2.drawImage(image, getHeight() / 3 * piece.getLocation().getX(), getWidth() / 3 * piece.getLocation().getY(), (int) this.getSize().getWidth() / 3, (int) this.getSize().getHeight() / 3, null);
         }
     }
 }

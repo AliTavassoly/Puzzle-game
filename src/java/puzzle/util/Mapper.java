@@ -1,4 +1,4 @@
-package puzzle;
+package puzzle.util;
 
 import puzzle.gui.GameFrame;
 import puzzle.gui.GamePanel;
@@ -39,9 +39,9 @@ public class Mapper {
         GameFrame.getInstance().repaint();
     }
 
-    public void showDialog(String message, String title){
+    public void showDialog(String message, String title, int jOptionPane){
         JOptionPane.showMessageDialog(gameFrame,
                 message, title,
-                JOptionPane.WARNING_MESSAGE);
+                jOptionPane);
     }
 }

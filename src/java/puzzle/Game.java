@@ -1,6 +1,9 @@
 package puzzle;
 
 import puzzle.logic.PuzzleBoard;
+import puzzle.util.Mapper;
+
+import javax.swing.*;
 
 public class Game {
     public static int n = 3;
@@ -18,7 +21,7 @@ public class Game {
         if (!PuzzleBoard.getInstance().solvable()) {
             Mapper.getInstance().showDialog(
                     "this puzzle is not solvable, change your config and try again",
-                    "Puzzle not solvable");
+                    "Puzzle not solvable", JOptionPane.WARNING_MESSAGE);
         }
 
         while (true) {
@@ -33,7 +36,7 @@ public class Game {
             if (PuzzleBoard.getInstance().isFinished()) {
                 Mapper.getInstance().showDialog(
                         "You finished the game, congratulation",
-                        "game finished");
+                        "game finished", JOptionPane.INFORMATION_MESSAGE);
                 break;
             }
         }

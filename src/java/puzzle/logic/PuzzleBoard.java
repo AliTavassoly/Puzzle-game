@@ -6,9 +6,9 @@ import java.util.Arrays;
 public class PuzzleBoard {
     private static PuzzleBoard puzzleBoardInstance;
 
-    private int missingPiece = 0;
     private ArrayList<PuzzlePiece> puzzlePieces;
     private ArrayList<Integer> initOrder;
+    private int missingPiece = 0;
 
     private PuzzleBoard() {
         puzzlePieces = new ArrayList<>();
