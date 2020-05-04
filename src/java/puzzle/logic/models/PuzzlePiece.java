@@ -1,4 +1,6 @@
-package puzzle.logic;
+package puzzle.logic.models;
+
+import puzzle.logic.Location;
 
 public class PuzzlePiece {
     private Location location;

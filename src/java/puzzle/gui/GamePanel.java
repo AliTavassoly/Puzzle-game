@@ -2,7 +2,7 @@ package puzzle.gui;
 
 import puzzle.util.Mapper;
 import puzzle.logic.Game;
-import puzzle.logic.PuzzlePiece;
+import puzzle.logic.models.PuzzlePiece;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

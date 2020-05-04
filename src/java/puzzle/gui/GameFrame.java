@@ -1,5 +1,7 @@
 package puzzle.gui;
 
+import puzzle.gui.util.MyKeyListener;
+
 import javax.swing.*;
 import java.awt.*;
 

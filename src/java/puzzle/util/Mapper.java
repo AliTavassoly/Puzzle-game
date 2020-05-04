@@ -3,7 +3,7 @@ package puzzle.util;
 import puzzle.gui.GameFrame;
 import puzzle.gui.GamePanel;
 import puzzle.logic.PuzzleBoard;
-import puzzle.logic.PuzzlePiece;
+import puzzle.logic.models.PuzzlePiece;
 
 import javax.swing.*;
 import java.util.ArrayList;

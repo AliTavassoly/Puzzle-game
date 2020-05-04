@@ -1,4 +1,4 @@
-package puzzle.gui;
+package puzzle.gui.util;
 
 import puzzle.logic.Game;
 import puzzle.logic.PuzzleBoard;

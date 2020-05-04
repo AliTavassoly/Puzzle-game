@@ -1,5 +1,6 @@
 package puzzle.logic;
 
+import puzzle.logic.models.PuzzlePiece;
 import puzzle.util.Rand;
 
 import java.util.ArrayList;
