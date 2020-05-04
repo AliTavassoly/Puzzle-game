@@ -1,4 +1,4 @@
-package Puzzle.logic;
+package puzzle.logic;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

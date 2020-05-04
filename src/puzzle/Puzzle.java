@@ -1,9 +1,10 @@
-package Puzzle;
+package puzzle;
 
-import Puzzle.gui.GameFrame;
-import Puzzle.gui.GamePanel;
-import Puzzle.logic.Location;
-import Puzzle.logic.PuzzlePiece;
+import puzzle.gui.GameFrame;
+import puzzle.gui.GamePanel;
+import puzzle.logic.Location;
+import puzzle.logic.PuzzleBoard;
+import puzzle.logic.PuzzlePiece;
 
 import javax.swing.*;
 
@@ -21,10 +22,31 @@ public class Puzzle {
 
     public Puzzle(){
         gamePanel = GamePanel.getInstance();
-        gameFrame = new GameFrame(gamePanel);
+        gameFrame = GameFrame.getInstance();
 
         makeInitPuzzle();
         runGame();
+    }
+
+    private void makeInitPuzzle(){
+        ArrayList<PuzzlePiece> puzzlePieces = new ArrayList<>();
+
+        ArrayList<Integer> piecesRandomOrder = new ArrayList<>(Arrays.asList(0, 5, 6, 7, 4, 3, 2, 8, 1));
+        PuzzleBoard.getInstance().setMissingPiece(7);
+
+        if (!solvable(PuzzleBoard.getInstance().getMissingPiece(), piecesRandomOrder)) {
+            JOptionPane.showMessageDialog(gameFrame, "this puzzle is not solvable, change your config and try again", "Puzzle not solvable", JOptionPane.WARNING_MESSAGE);
+            gameFinished = true;
+        }
+
+        for (int i = 0; i < 9; i++) {
+            if (PuzzleBoard.getInstance().getMissingPiece() != i) {
+                puzzlePieces.add(new PuzzlePiece(piecesRandomOrder.get(i) + 1 + ".jpg", new Location(gamePanel.getHeight() / 3 * (i % 3), gamePanel.getWidth() / 3 * (i / 3))));
+            } else {
+                puzzlePieces.add(new PuzzlePiece("missing.jpg", new Location(gamePanel.getHeight() / 3 * (i % 3), gamePanel.getWidth() / 3 * (i / 3))));
+            }
+        }
+        PuzzleBoard.getInstance().setPuzzlePieces(puzzlePieces);
     }
 
     private void runGame(){
@@ -34,38 +56,17 @@ public class Puzzle {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            gamePanel.repaint();
-            gameFrame.repaint();
+
+            Mapper.getInstance().updateGui();
 
             if (gameFinished) {
                 break;
             }
-            if (gamePanel.getGameState().equals("finished")) {
+            if (PuzzleBoard.getInstance().getGameState().equals("finished")) {
                 JOptionPane.showMessageDialog(gameFrame, "You finished the game, congratulation", "game finished", JOptionPane.INFORMATION_MESSAGE);
                 gameFinished = true;
             }
         }
-    }
-
-    private void makeInitPuzzle(){
-        ArrayList<PuzzlePiece> puzzlePieces = new ArrayList<>();
-
-        ArrayList<Integer> piecesRandomOrder = new ArrayList<>(Arrays.asList(0, 5, 6, 7, 4, 3, 2, 8, 1));
-        gamePanel.setMissingPiece(7);
-
-        if (!solvable(gamePanel.getMissingPiece(), piecesRandomOrder)) {
-            JOptionPane.showMessageDialog(gameFrame, "this puzzle is not solvable, change your config and try again", "Puzzle not solvable", JOptionPane.WARNING_MESSAGE);
-            gameFinished = true;
-        }
-
-        for (int i = 0; i < 9; i++) {
-            if (gamePanel.getMissingPiece() != i) {
-                puzzlePieces.add(new PuzzlePiece(piecesRandomOrder.get(i) + 1 + ".jpg", new Location(gamePanel.getHeight() / 3 * (i % 3), gamePanel.getWidth() / 3 * (i / 3))));
-            } else {
-                puzzlePieces.add(new PuzzlePiece("missing.jpg", new Location(gamePanel.getHeight() / 3 * (i % 3), gamePanel.getWidth() / 3 * (i / 3))));
-            }
-        }
-        gamePanel.setPuzzlePieces(puzzlePieces);
     }
 
     private static boolean solvable(int missingPiece, ArrayList<Integer> piecesOrder) {

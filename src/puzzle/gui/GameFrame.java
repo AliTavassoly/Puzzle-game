@@ -1,14 +1,22 @@
-package Puzzle.gui;
+package puzzle.gui;
 
 import javax.swing.*;
 
 public class GameFrame extends JFrame {
     private JPanel panel;
+    private static GameFrame frameInstance;
 
-    public GameFrame(JPanel panel){
-        this.panel = panel;
-
+    private GameFrame(){
+        panel = GamePanel.getInstance();
         configFrame();
+    }
+
+    public static GameFrame getInstance(){
+        if(frameInstance == null){
+            return frameInstance = new GameFrame();
+        } else{
+            return frameInstance;
+        }
     }
 
     private void configFrame(){

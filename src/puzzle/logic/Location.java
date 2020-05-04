@@ -1,4 +1,4 @@
-package Puzzle.logic;
+package puzzle.logic;
 
 public class Location {
     private int x, y;

@@ -1,4 +1,4 @@
-package Puzzle.util;
+package puzzle.util;
 
 import java.util.ArrayList;
 import java.util.Random;
