@@ -41,7 +41,7 @@ public class MyKeyListener implements KeyListener {
             PuzzleBoard.getInstance().setMissingPiece(missingPieceIndex + 3);
         }
 
-        if (PuzzleBoard.getInstance().getGameState().equals("finished")) {
+        if (PuzzleBoard.getInstance().isFinished()) {
             return;
         }
     }

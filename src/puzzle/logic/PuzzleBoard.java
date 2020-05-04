@@ -4,11 +4,10 @@ import java.util.ArrayList;
 
 public class PuzzleBoard {
     private static PuzzleBoard puzzleBoardInstance;
+
     private int missingPiece = 0;
-
+    private boolean isFinished;
     private ArrayList<PuzzlePiece> puzzlePieces = new ArrayList<>();
-
-    private String gameState = "#";
 
     private PuzzleBoard(){
 
@@ -22,6 +21,7 @@ public class PuzzleBoard {
         }
     }
 
+    // Start of getter setter
     public void setPuzzlePieces(ArrayList<PuzzlePiece> puzzlePieces) {
         this.puzzlePieces = puzzlePieces;
     }
@@ -36,20 +36,21 @@ public class PuzzleBoard {
         return missingPiece;
     }
 
-    public String getGameState() {
-        return gameState;
+    public boolean isFinished() {
+        return isFinished;
     }
-    public void setGameState(String gameState) {
-        this.gameState = gameState;
+    public void setFinished(boolean finished) {
+        isFinished = finished;
     }
 
+    // End of getter setter
     public void swapPieces(int i, int j) {
         PuzzlePiece copy = puzzlePieces.get(i).getClone();
         puzzlePieces.get(i).setPieceNumber(puzzlePieces.get(j).getPieceNumber());
         puzzlePieces.get(j).setPieceNumber(copy.getPieceNumber());
 
         if (gameFinished()) {
-            gameState = "finished";
+            isFinished = true;
         }
     }
 

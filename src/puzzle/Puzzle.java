@@ -61,7 +61,7 @@ public class Puzzle {
             if (gameFinished) {
                 break;
             }
-            if (PuzzleBoard.getInstance().getGameState().equals("finished")) {
+            if (PuzzleBoard.getInstance().isFinished()) {
                 JOptionPane.showMessageDialog(gameFrame, "You finished the game, congratulation", "game finished", JOptionPane.INFORMATION_MESSAGE);
                 gameFinished = true;
             }
