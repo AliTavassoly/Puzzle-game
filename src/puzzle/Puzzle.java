@@ -20,7 +20,7 @@ public class Puzzle {
 
     boolean gameFinished = false;
 
-    public Puzzle(){
+    public Puzzle() {
         gamePanel = GamePanel.getInstance();
         gameFrame = GameFrame.getInstance();
 
@@ -28,10 +28,10 @@ public class Puzzle {
         runGame();
     }
 
-    private void makeInitPuzzle(){
+    private void makeInitPuzzle() {
         ArrayList<PuzzlePiece> puzzlePieces = new ArrayList<>();
 
-        ArrayList<Integer> piecesRandomOrder = new ArrayList<>(Arrays.asList(0, 5, 6, 7, 4, 3, 2, 8, 1));
+        ArrayList<Integer> piecesRandomOrder = new ArrayList<>(Arrays.asList(0, 1, 2, 3, 4, 5, 6, 8, 7));
         PuzzleBoard.getInstance().setMissingPiece(7);
 
         if (!solvable(PuzzleBoard.getInstance().getMissingPiece(), piecesRandomOrder)) {
@@ -40,16 +40,15 @@ public class Puzzle {
         }
 
         for (int i = 0; i < 9; i++) {
-            if (PuzzleBoard.getInstance().getMissingPiece() != i) {
-                puzzlePieces.add(new PuzzlePiece(piecesRandomOrder.get(i) + 1 + ".jpg", new Location(gamePanel.getHeight() / 3 * (i % 3), gamePanel.getWidth() / 3 * (i / 3))));
-            } else {
-                puzzlePieces.add(new PuzzlePiece("missing.jpg", new Location(gamePanel.getHeight() / 3 * (i % 3), gamePanel.getWidth() / 3 * (i / 3))));
-            }
+            puzzlePieces.add(new PuzzlePiece(new Location(
+                    gamePanel.getHeight() / 3 * (i % 3),
+                    gamePanel.getWidth() / 3 * (i / 3)),
+                    piecesRandomOrder.get(i)));
         }
         PuzzleBoard.getInstance().setPuzzlePieces(puzzlePieces);
     }
 
-    private void runGame(){
+    private void runGame() {
         while (true) {
             try {
                 Thread.sleep(1000 / 60);

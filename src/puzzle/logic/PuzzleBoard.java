@@ -45,10 +45,11 @@ public class PuzzleBoard {
 
     public void swapPieces(int i, int j) {
         PuzzlePiece copy = this.puzzlePieces.get(i).getClone();
-        puzzlePieces.get(i).setImage(puzzlePieces.get(j).getImage());
         puzzlePieces.get(i).setPieceNumber(puzzlePieces.get(j).getPieceNumber());
-        puzzlePieces.get(j).setImage(copy.getImage());
         puzzlePieces.get(j).setPieceNumber(copy.getPieceNumber());
+        //puzzlePieces.set(i, puzzlePieces.get(j));
+        //puzzlePieces.set(j, copy);
+
 
 
         if (gameFinished()) {
