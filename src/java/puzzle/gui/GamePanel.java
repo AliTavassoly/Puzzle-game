@@ -39,7 +39,7 @@ public class GamePanel extends JPanel {
             try {
                 if (piece.getPieceNumber() != Game.n * Game.n - 1) {
                     image = ImageIO.read(this.getClass().getResourceAsStream(
-                      "/images/" + (piece.getPieceNumber() + 1) + ".jpg"));
+                      "/images/" + (piece.getPieceNumber() + 1) + ".png"));
                 }
                 else {
                     image = ImageIO.read(this.getClass().getResourceAsStream(
@@ -50,7 +50,11 @@ public class GamePanel extends JPanel {
             } catch (Exception e){
                 e.printStackTrace();
             }
-            g2.drawImage(image, getHeight() / Game.n * piece.getLocation().getX(), getWidth() / Game.n * piece.getLocation().getY(), (int) this.getSize().getWidth() / 3, (int) this.getSize().getHeight() / 3, null);
+            g2.drawImage(image, getHeight() / Game.n * piece.getLocation().getX(),
+                    getWidth() / Game.n * piece.getLocation().getY(),
+                    (int) this.getSize().getWidth() / Game.n,
+                    (int) this.getSize().getHeight() / Game.n,
+                    null);
         }
     }
 }

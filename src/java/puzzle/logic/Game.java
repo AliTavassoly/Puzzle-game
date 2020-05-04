@@ -6,7 +6,7 @@ import javax.swing.*;
 
 public class Game {
     public static int n = 4;
-    public static int squareLength = 200;
+    public static int squareLength = 100;
 
     public Game() {
         Mapper.getInstance().makeGui();
