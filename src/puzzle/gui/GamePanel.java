@@ -1,7 +1,7 @@
 package puzzle.gui;
 
 import puzzle.Mapper;
-import puzzle.Puzzle;
+import puzzle.Game;
 import puzzle.logic.PuzzlePiece;
 
 import javax.imageio.ImageIO;
@@ -18,7 +18,7 @@ public class GamePanel extends JPanel {
     }
 
     private void configPanel() {
-        setSize(Puzzle.n * Puzzle.squareLength, Puzzle.n * Puzzle.squareLength + 20);
+        setSize(Game.n * Game.squareLength, Game.n * Game.squareLength);
 
         int screenWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
         int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
@@ -49,7 +49,7 @@ public class GamePanel extends JPanel {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            g.drawImage(image, piece.getLocation().getX(), piece.getLocation().getY(), (int) this.getSize().getWidth() / 3, (int) this.getSize().getHeight() / 3, null);
+            g.drawImage(image, getHeight() / 3 * piece.getLocation().getX(), getWidth() / 3 * piece.getLocation().getY(), (int) this.getSize().getWidth() / 3, (int) this.getSize().getHeight() / 3, null);
         }
     }
 }

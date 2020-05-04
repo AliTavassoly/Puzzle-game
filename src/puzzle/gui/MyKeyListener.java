@@ -14,7 +14,6 @@ public class MyKeyListener implements KeyListener {
     public void keyPressed(KeyEvent keyEvent) {
         int missingPieceIndex = PuzzleBoard.getInstance().getMissingPiece();
         if (keyEvent.getKeyCode() == KeyEvent.VK_RIGHT) {
-
             if (missingPieceIndex % 3 == 2) {
                 return;
             }
@@ -38,10 +37,6 @@ public class MyKeyListener implements KeyListener {
             }
             PuzzleBoard.getInstance().swapPieces(missingPieceIndex, missingPieceIndex + 3);
             PuzzleBoard.getInstance().setMissingPiece(missingPieceIndex + 3);
-        }
-
-        if (PuzzleBoard.getInstance().isFinished()) {
-            return;
         }
     }
 

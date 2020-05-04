@@ -1,15 +1,26 @@
 package puzzle.logic;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class PuzzleBoard {
     private static PuzzleBoard puzzleBoardInstance;
 
     private int missingPiece = 0;
-    private ArrayList<PuzzlePiece> puzzlePieces = new ArrayList<>();
+    private ArrayList<PuzzlePiece> puzzlePieces;
+    private ArrayList<Integer> initOrder;
 
-    private PuzzleBoard(ArrayList<PuzzlePiece> puzzlePieces) {
-        this.puzzlePieces = puzzlePieces;
+    private PuzzleBoard() {
+        puzzlePieces = new ArrayList<>();
+        initOrder = new ArrayList<>(Arrays.asList(0, 1, 2, 3, 4, 5, 6, 8, 7));
+
+        for (int i = 0; i < 9; i++) {
+            puzzlePieces.add(new PuzzlePiece(new Location(
+                    (i % 3),
+                    (i / 3)),
+                    initOrder.get(i)));
+        }
+
         for(int i = 0; i < puzzlePieces.size(); i++){
             if(puzzlePieces.get(i).getPieceNumber() == 8){
                 missingPiece = i;
@@ -22,8 +33,8 @@ public class PuzzleBoard {
         return puzzleBoardInstance;
     }
 
-    public static void makeInstance(ArrayList<PuzzlePiece> puzzlePieces) {
-        puzzleBoardInstance = new PuzzleBoard(puzzlePieces);
+    public static void makeNewInstance() {
+        puzzleBoardInstance = new PuzzleBoard();
     }
 
     // Start of getter setter
@@ -46,6 +57,27 @@ public class PuzzleBoard {
         PuzzlePiece copy = puzzlePieces.get(i).getClone();
         puzzlePieces.get(i).setPieceNumber(puzzlePieces.get(j).getPieceNumber());
         puzzlePieces.get(j).setPieceNumber(copy.getPieceNumber());
+    }
+
+    public boolean solvable() {
+        int inversionCount = 0;
+        for (int i = 0; i < initOrder.size(); i++) {
+            for (int j = i + 1; j < initOrder.size(); j++) {
+                if (initOrder.get(i) > initOrder.get(j)) {
+                    inversionCount += 1;
+                }
+            }
+        }
+
+        int parity = inversionCount % 2;
+
+        int distanceOfMissingPiece = (2 - (missingPiece % 3)) + (2 - (missingPiece / 3));
+
+        parity ^= (distanceOfMissingPiece % 2);
+        if (parity == 0) {
+            return true;
+        }
+        return false;
     }
 
     public boolean isFinished() {

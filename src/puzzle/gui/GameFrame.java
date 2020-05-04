@@ -25,6 +25,9 @@ public class GameFrame extends JFrame {
         add(panel);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
+        setUndecorated(true);
+        getRootPane().setWindowDecorationStyle(JRootPane.NONE);
+
         addKeyListener(new MyKeyListener());
         setVisible(true);
     }

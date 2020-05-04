@@ -5,10 +5,13 @@ import puzzle.gui.GamePanel;
 import puzzle.logic.PuzzleBoard;
 import puzzle.logic.PuzzlePiece;
 
+import javax.swing.*;
 import java.util.ArrayList;
 
 public class Mapper {
     private static Mapper mapper;
+    private GameFrame gameFrame;
+    private GamePanel gamePanel;
 
     private Mapper(){
 
@@ -26,8 +29,19 @@ public class Mapper {
         return PuzzleBoard.getInstance().getPuzzlePieces();
     }
 
+    public void makeGui(){
+        gameFrame = GameFrame.getInstance();
+        gamePanel = GamePanel.getInstance();
+    }
+
     public void updateGui(){
         GamePanel.getInstance().repaint();
         GameFrame.getInstance().repaint();
+    }
+
+    public void showDialog(String message, String title){
+        JOptionPane.showMessageDialog(gameFrame,
+                message, title,
+                JOptionPane.WARNING_MESSAGE);
     }
 }

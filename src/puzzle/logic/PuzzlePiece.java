@@ -26,7 +26,6 @@ public class PuzzlePiece {
 
     // End of getter setter
     public PuzzlePiece getClone() {
-        PuzzlePiece clone = new PuzzlePiece(location, pieceNumber);
-        return clone;
+        return new PuzzlePiece(location, pieceNumber);
     }
 }
