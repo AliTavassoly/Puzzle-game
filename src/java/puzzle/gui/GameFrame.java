@@ -1,6 +1,7 @@
 package puzzle.gui;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class GameFrame extends JFrame {
     private static GameFrame frameInstance;
@@ -24,7 +25,9 @@ public class GameFrame extends JFrame {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         setUndecorated(true);
-        getRootPane().setWindowDecorationStyle(JRootPane.NONE);
+
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
 
         addKeyListener(new MyKeyListener());
         setVisible(true);

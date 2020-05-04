@@ -39,9 +39,11 @@ public class Mapper {
         GameFrame.getInstance().repaint();
     }
 
-    public void showDialog(String message, String title, int jOptionPane){
-        JOptionPane.showMessageDialog(gameFrame,
-                message, title,
-                jOptionPane);
+    public int endGameDialog(String message, String title){
+        return JOptionPane.showConfirmDialog(null, message, title, JOptionPane.YES_NO_OPTION);
+    }
+
+    public int notSolveAbleDialog(String message, String title){
+        return JOptionPane.showConfirmDialog(null, message, title, JOptionPane.YES_NO_OPTION);
     }
 }

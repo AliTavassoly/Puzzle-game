@@ -1,7 +1,8 @@
 package puzzle.logic;
 
+import puzzle.util.Rand;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class PuzzleBoard {
     private static PuzzleBoard puzzleBoardInstance;
@@ -12,17 +13,18 @@ public class PuzzleBoard {
 
     private PuzzleBoard() {
         puzzlePieces = new ArrayList<>();
-        initOrder = new ArrayList<>(Arrays.asList(0, 1, 2, 3, 4, 5, 6, 8, 7));
+        //initOrder = new ArrayList<>(Arrays.asList(0, 1, 2, 3, 4, 5, 6, 8, 7));
+        initOrder = Rand.getRandomArray(Game.n * Game.n, Game.n * Game.n, 0);
 
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < Game.n * Game.n; i++) {
             puzzlePieces.add(new PuzzlePiece(new Location(
-                    (i % 3),
-                    (i / 3)),
+                    (i % Game.n),
+                    (i / Game.n)),
                     initOrder.get(i)));
         }
 
         for(int i = 0; i < puzzlePieces.size(); i++){
-            if(puzzlePieces.get(i).getPieceNumber() == 8){
+            if(puzzlePieces.get(i).getPieceNumber() == Game.n * Game.n - 1){
                 missingPiece = i;
                 break;
             }
@@ -33,7 +35,7 @@ public class PuzzleBoard {
         return puzzleBoardInstance;
     }
 
-    public static void makeNewInstance() {
+    public static void getNewInstance() {
         puzzleBoardInstance = new PuzzleBoard();
     }
 
