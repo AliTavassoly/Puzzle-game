@@ -56,12 +56,9 @@ public class Puzzle {
 
             Mapper.getInstance().updateGui();
 
-            if (gameFinished) {
-                break;
-            }
             if (PuzzleBoard.getInstance().isFinished()) {
                 JOptionPane.showMessageDialog(gameFrame, "You finished the game, congratulation", "game finished", JOptionPane.INFORMATION_MESSAGE);
-                gameFinished = true;
+                break;
             }
         }
     }

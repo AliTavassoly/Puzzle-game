@@ -6,7 +6,6 @@ public class PuzzleBoard {
     private static PuzzleBoard puzzleBoardInstance;
 
     private int missingPiece = 0;
-    private boolean isFinished;
     private ArrayList<PuzzlePiece> puzzlePieces = new ArrayList<>();
 
     private PuzzleBoard(ArrayList<PuzzlePiece> puzzlePieces) {
@@ -31,7 +30,6 @@ public class PuzzleBoard {
     public void setPuzzlePieces(ArrayList<PuzzlePiece> puzzlePieces) {
         this.puzzlePieces = puzzlePieces;
     }
-
     public ArrayList<PuzzlePiece> getPuzzlePieces() {
         return puzzlePieces;
     }
@@ -39,17 +37,8 @@ public class PuzzleBoard {
     public void setMissingPiece(int missingPiece) {
         this.missingPiece = missingPiece;
     }
-
     public int getMissingPiece() {
         return missingPiece;
-    }
-
-    public boolean isFinished() {
-        return isFinished;
-    }
-
-    public void setFinished(boolean finished) {
-        isFinished = finished;
     }
 
     // End of getter setter
@@ -57,13 +46,9 @@ public class PuzzleBoard {
         PuzzlePiece copy = puzzlePieces.get(i).getClone();
         puzzlePieces.get(i).setPieceNumber(puzzlePieces.get(j).getPieceNumber());
         puzzlePieces.get(j).setPieceNumber(copy.getPieceNumber());
-
-        if (gameFinished()) {
-            isFinished = true;
-        }
     }
 
-    private boolean gameFinished() {
+    public boolean isFinished() {
         for (int i = 0; i < 8; i++) {
             if (puzzlePieces.get(i).getPieceNumber() != i) {
                 return false;
