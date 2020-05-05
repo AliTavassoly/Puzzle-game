@@ -1,4 +1,4 @@
-package puzzle.logic.models;
+package puzzle.logic.model;
 
 import puzzle.logic.Location;
 

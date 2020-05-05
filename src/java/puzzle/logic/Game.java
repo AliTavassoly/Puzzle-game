@@ -1,20 +1,35 @@
 package puzzle.logic;
 
+import puzzle.util.ConfigLoader;
 import puzzle.util.Mapper;
 
+import java.util.Map;
+
 public class Game {
-    public static int n = 3;
-    public static int squareLength = 100;
+    public static int n;
+    public static int squareLength;
+    public static Map<Integer, String> imagesPath;
+    public static Map<String , Object> gameSizes;
 
     public Game() {
+        loadConfigs();
+
         Mapper.getInstance().makeGui();
 
-        PuzzleBoard.getNewInstance();
+        Puzzle.getNewInstance();
 
         runGame();
     }
 
-    private void gameNotSolveAble(){
+    private static void loadConfigs(){
+        imagesPath = ConfigLoader.getInstance().getImagesPath();
+        gameSizes = ConfigLoader.getInstance().getGameSizes();
+
+        n = ((Double)gameSizes.get("n")).intValue();
+        squareLength = ((Double)gameSizes.get("squareLength")).intValue();
+    }
+
+    private void gameNotSolvable(){
         int reply = Mapper.getInstance().endGameDialog(
                 "this puzzle is not solvable, do you want to play new one?",
                 "Puzzle not solvable");
@@ -26,7 +41,7 @@ public class Game {
     }
 
     private void gameFinished(){
-        int reply = Mapper.getInstance().notSolveAbleDialog(
+        int reply = Mapper.getInstance().notSolvableDialog(
                 "You finished the game, congratulation. do you want to play new game?",
                 "game finished");
         if(reply == 0){
@@ -37,8 +52,8 @@ public class Game {
     }
 
     private void runGame() {
-        if (!PuzzleBoard.getInstance().solvable()) {
-            gameNotSolveAble();
+        if (!Puzzle.getInstance().solvable()) {
+            gameNotSolvable();
         }
 
         while (true) {
@@ -50,7 +65,7 @@ public class Game {
 
             Mapper.getInstance().updateGui();
 
-            if (PuzzleBoard.getInstance().isFinished()) {
+            if (Puzzle.getInstance().isFinished()) {
                 gameFinished();
             }
         }

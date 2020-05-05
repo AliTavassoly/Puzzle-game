@@ -2,11 +2,9 @@ package puzzle.util;
 
 import puzzle.gui.GameFrame;
 import puzzle.gui.GamePanel;
-import puzzle.logic.PuzzleBoard;
-import puzzle.logic.models.PuzzlePiece;
+import puzzle.logic.Puzzle;
 
 import javax.swing.*;
-import java.util.ArrayList;
 
 public class Mapper {
     private static Mapper mapper;
@@ -25,8 +23,8 @@ public class Mapper {
         }
     }
 
-    public ArrayList<PuzzlePiece> getPuzzlePieces(){
-        return PuzzleBoard.getInstance().getPuzzlePieces();
+    public Puzzle getPuzzle(){
+        return Puzzle.getInstance();
     }
 
     public void makeGui(){
@@ -43,7 +41,7 @@ public class Mapper {
         return JOptionPane.showConfirmDialog(null, message, title, JOptionPane.YES_NO_OPTION);
     }
 
-    public int notSolveAbleDialog(String message, String title){
+    public int notSolvableDialog(String message, String title){
         return JOptionPane.showConfirmDialog(null, message, title, JOptionPane.YES_NO_OPTION);
     }
 }

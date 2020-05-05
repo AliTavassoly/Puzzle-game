@@ -1,18 +1,18 @@
 package puzzle.logic;
 
-import puzzle.logic.models.PuzzlePiece;
+import puzzle.logic.model.PuzzlePiece;
 import puzzle.util.Rand;
 
 import java.util.ArrayList;
 
-public class PuzzleBoard {
-    private static PuzzleBoard puzzleBoardInstance;
+public class Puzzle {
+    private static Puzzle puzzleInstance;
 
     private ArrayList<PuzzlePiece> puzzlePieces;
     private ArrayList<Integer> initOrder;
     private int missingPiece = 0;
 
-    private PuzzleBoard() {
+    private Puzzle() {
         puzzlePieces = new ArrayList<>();
         //initOrder = new ArrayList<>(Arrays.asList(0, 1, 2, 3, 4, 5, 6, 8, 7));
         initOrder = Rand.getRandomArray(Game.n * Game.n, Game.n * Game.n, 0);
@@ -32,12 +32,12 @@ public class PuzzleBoard {
         }
     }
 
-    public static PuzzleBoard getInstance() {
-        return puzzleBoardInstance;
+    public static Puzzle getInstance() {
+        return puzzleInstance;
     }
 
     public static void getNewInstance() {
-        puzzleBoardInstance = new PuzzleBoard();
+        puzzleInstance = new Puzzle();
     }
 
     // Start of getter setter

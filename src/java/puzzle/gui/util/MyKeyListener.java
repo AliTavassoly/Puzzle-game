@@ -1,7 +1,7 @@
 package puzzle.gui.util;
 
 import puzzle.logic.Game;
-import puzzle.logic.PuzzleBoard;
+import puzzle.logic.Puzzle;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -13,31 +13,31 @@ public class MyKeyListener implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent keyEvent) {
-        int missingPieceIndex = PuzzleBoard.getInstance().getMissingPiece();
+        int missingPieceIndex = Puzzle.getInstance().getMissingPiece();
         if (keyEvent.getKeyCode() == KeyEvent.VK_RIGHT) {
             if (missingPieceIndex % Game.n == Game.n - 1) {
                 return;
             }
-            PuzzleBoard.getInstance().swapPieces(missingPieceIndex, missingPieceIndex + 1);
-            PuzzleBoard.getInstance().setMissingPiece(missingPieceIndex + 1);
+            Puzzle.getInstance().swapPieces(missingPieceIndex, missingPieceIndex + 1);
+            Puzzle.getInstance().setMissingPiece(missingPieceIndex + 1);
         } else if (keyEvent.getKeyCode() == KeyEvent.VK_LEFT) {
             if (missingPieceIndex % Game.n == 0) {
                 return;
             }
-            PuzzleBoard.getInstance().swapPieces(missingPieceIndex, missingPieceIndex - 1);
-            PuzzleBoard.getInstance().setMissingPiece(missingPieceIndex - 1);
+            Puzzle.getInstance().swapPieces(missingPieceIndex, missingPieceIndex - 1);
+            Puzzle.getInstance().setMissingPiece(missingPieceIndex - 1);
         } else if (keyEvent.getKeyCode() == KeyEvent.VK_UP) {
             if (missingPieceIndex / Game.n == 0) {
                 return;
             }
-            PuzzleBoard.getInstance().swapPieces(missingPieceIndex, missingPieceIndex - Game.n);
-            PuzzleBoard.getInstance().setMissingPiece(missingPieceIndex - Game.n);
+            Puzzle.getInstance().swapPieces(missingPieceIndex, missingPieceIndex - Game.n);
+            Puzzle.getInstance().setMissingPiece(missingPieceIndex - Game.n);
         } else if (keyEvent.getKeyCode() == KeyEvent.VK_DOWN) {
             if (missingPieceIndex / Game.n == Game.n - 1) {
                 return;
             }
-            PuzzleBoard.getInstance().swapPieces(missingPieceIndex, missingPieceIndex + Game.n);
-            PuzzleBoard.getInstance().setMissingPiece(missingPieceIndex + Game.n);
+            Puzzle.getInstance().swapPieces(missingPieceIndex, missingPieceIndex + Game.n);
+            Puzzle.getInstance().setMissingPiece(missingPieceIndex + Game.n);
         }
     }
 

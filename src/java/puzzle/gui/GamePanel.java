@@ -2,7 +2,7 @@ package puzzle.gui;
 
 import puzzle.util.Mapper;
 import puzzle.logic.Game;
-import puzzle.logic.models.PuzzlePiece;
+import puzzle.logic.model.PuzzlePiece;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -34,12 +34,12 @@ public class GamePanel extends JPanel {
         super.paintComponent(g);
 
         Graphics2D g2 = (Graphics2D) g;
-        for (PuzzlePiece piece : Mapper.getInstance().getPuzzlePieces()) {
+        for (PuzzlePiece piece : Mapper.getInstance().getPuzzle().getPuzzlePieces()) {
             BufferedImage image = null;
             try {
                 if (piece.getPieceNumber() != Game.n * Game.n - 1) {
                     image = ImageIO.read(this.getClass().getResourceAsStream(
-                      "/images/" + (piece.getPieceNumber() + 1) + ".png"));
+                      "/images/" + Game.imagesPath.get(piece.getPieceNumber())));
                 }
                 else {
                     image = ImageIO.read(this.getClass().getResourceAsStream(
